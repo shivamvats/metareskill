@@ -1,4 +1,4 @@
-"""Setup script for recovery_skills"""
+"""Setup script for metareskill"""
 
 from setuptools import setup
 

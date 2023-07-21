@@ -12,7 +12,7 @@
 
 ## Learning Preconditions
 Before learning the recovery skills, you need to learn task sub-goals. This
-steps requires a set of nominal controllers. You might need to do steps 1-4 a
+requires a set of nominal controllers. You might need to do steps 1-4 a
 few times to learn good subgoal classifiers.
 
 1. **Generate subgoals from nominal skill chain**
@@ -23,7 +23,7 @@ few times to learn good subgoal classifiers.
 
 - **Output** - `all_subgoals.pkl` + `all_gt_subgoals.pkl` + `all_labels.pkl`
 
-Move the outputs to `data/door_opening/debug/nominal_skills/subgoals/<dir>`
+Move the outputs to `data/door_opening/final/nominal_skills/subgoals/<dir>`
 
 2. **Train subgoal classifiers**
 
