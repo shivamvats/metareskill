@@ -1,0 +1,34 @@
+defaults:
+  - env@demo_env: demo
+  - env@rl_env: rl
+  - algo: reps #sac #ppo
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+
+seed:
+render: False
+nevals: 5
+test: False
+
+path_to_reps_policies: #./data/door_opening/debug/rl_policies/all_learnt_reps_policies.pkl
+path_to_demo_skill_chains_dir: ./data/door_opening/debug/trained_demo_skill_chains
+path_to_demo_dir: ./data/door_opening/debug/demos_train
+
+backchaining: True
+
+policies:
+  # skills to train via backchaining
+  skill_ids: [3]
+  num_samples: 25
+
+preconds:
+  # skill preconds to train via backchaining
+  skill_ids: []
+  num_samples: 25
+
+train:
+  total_timesteps: 1e6
+  eval_freq: 256
+  model_save_freq: 1000000
+  num_cpus: 6
+  use_ray: False

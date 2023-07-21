@@ -1,0 +1,6 @@
+rel_entropy_bound: 0.5
+min_temperature: 1e-5
+min_updates: 10 # 3
+max_updates: 10 # 15
+rollouts_per_update: 40 # 120 # 100
+min_success: 0.9

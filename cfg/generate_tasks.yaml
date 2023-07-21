@@ -1,0 +1,9 @@
+defaults:
+  - env: rl # demo
+  - controller: osc_pose
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+
+seed:
+render: False
+ntasks: 2

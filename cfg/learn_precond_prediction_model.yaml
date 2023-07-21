@@ -1,0 +1,3 @@
+root_dir: ./data/door_opening/debug/recovery_skills
+recovery_file: recovery_skills.pkl
+failed_recovery_file: failed_recovery_skills.pkl

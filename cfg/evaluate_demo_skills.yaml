@@ -1,0 +1,14 @@
+defaults:
+  - env: demo
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+
+seed:
+render: False
+nevals: 5
+
+path_to_tasks: ./data/door_opening/debug/tasks.pkl
+path_to_subgoals: ./data/door_opening/debug/subgoals.pkl
+path_to_demo_dir: ./data/door_opening/debug/demos_train
+path_to_db_root_dir: ./data/door_opening/debug/skill_db
+path_to_eval_results:

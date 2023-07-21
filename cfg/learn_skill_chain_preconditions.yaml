@@ -1,0 +1,37 @@
+defaults:
+  - env: rl
+  - algo: reps #sac #ppo
+  - hydra/launcher: ray
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+
+hydra:
+  sweep:
+    dir: outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}
+
+seed:
+render: False
+nevals: 25
+test: False
+perfect_state_estimation: False
+
+initialize: False
+finetune: False
+second_finetune: False #add pos of rest as neg
+hardcode_start_goal: False
+
+init_subgoals: data/door_opening/debug/nominal_skills/subgoals/7-Mar/subgoals.pkl
+learnt_preconds: data/door_opening/debug/nominal_skills/preconds/12-Mar/learnt_preconds.pkl
+#learnt_preconds: data/door_opening/debug/nominal_skills/preconds/12-Mar/learnt_preconds.pkl
+learnt_gt_preconds: data/door_opening/debug/nominal_skills/preconds/9-June/finetuned_preconds.pkl
+
+skill_ids: [0]
+
+train:
+  num_samples: 50
+  total_timesteps: 1e6
+  eval_freq: 256
+  model_save_freq: 1000000
+  num_cpus: 1
+  use_ray: False

@@ -1,0 +1,90 @@
+defaults:
+  - env: rl # demo
+  - algo: reps #sac #ppo
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+
+hydra:
+  sweep:
+    dir: outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${task_set}
+
+wandb:
+  project: recovery-skills
+  entity: iam-lab
+  group: door_opening/sac
+
+seed:
+render: False
+mode: train # eval # init
+test: False
+warm_start: False
+policy_type: REPS #demo
+ntasks: 2
+nevals: 10
+
+nominal_skills_dir: data/door_opening/debug/nominal_skills
+pretrained_nominal_skill_chain: trained_gt_skill_chain.pkl
+path_to_recovery_skills: './data/door_opening/debug/recovery_skills/9-June/knn_skills.pkl'
+#path_to_failure_clusters: ./data/door_opening/debug/failures/1-June/failure_clusters.pkl
+#path_to_failure_clf: ./data/door_opening/debug/failures/1-June/failure_classifier.pkl
+path_to_failure_clusters: ./data/door_opening/debug/failures/12-Sep/failure_clusters.pkl
+path_to_failure_clf: ./data/door_opening/debug/failures/12-Sep/failure_classifier.pkl
+path_to_preconds: ./data/door_opening/debug/nominal_skills/preconds/11-June/final_finetuned_preconds.pkl
+#path_to_tasks_train: ./data/door_opening/debug/recovery_tasks/9-June/train_tasks_0.pkl
+#path_to_tasks_val: ./data/door_opening/debug/recovery_tasks/9-June/val_tasks_0.pkl
+path_to_tasks_root: ./data/door_opening/debug/recovery_tasks/12-Sep
+path_to_transition_low: ./data/door_opening/debug/symbolic_graph/9-June/low_transition_probs.pkl
+path_to_transition_high: ./data/door_opening/debug/symbolic_graph/9-June/high_transition_probs.pkl
+#path_to_oracle: ./data/door_opening/debug/recovery_skills/13-Sep/rr/budget-400
+path_to_oracle: ./data/door_opening/debug/recovery_skills/13-Sep/rr/1
+task_set: 0
+
+use_pretrained_nominal_skill_chain: False
+load_preconds: True
+#filter_failures: False
+planner: Mono-MAB #MAB # Round-Robin #Weighted-Round-Robin
+planning_horizon: 1
+window: 5
+
+active_cluster_sampling: False
+
+MAB:
+  reward: samples
+  discount: 1
+  c: 0.02
+  initialize: 4 #2
+
+RR:
+  size_based_allocation: True
+
+iterative:
+  n_rounds: 2
+  n_fails_per_round: 500
+  round_0_budget: 48
+
+#MDP:
+  #action_rew: -1.0
+  #failure_rew: -2.0
+
+ntasks_to_solve: 20
+
+budget:
+  nmax: 200
+  oracle_calls_per_iter: 1
+
+subgoals:
+  gmm: True
+  svm: False
+
+train:
+  num_cpus: 10
+  use_ray: True
+
+# only for demo
+device: keyboard #spacemouse
+arm: "left"
+toggle_camera_on_grasp: False
+keyboard:
+  pos_sensitivity: 1.0
+  rot_sensitivity: 1.0

@@ -1,0 +1,42 @@
+defaults:
+  - env: rl #demo #rl # demo
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+
+seed:
+render: True
+nevals: 5
+view_term_states: False # visualize skill goals
+view_subgoals: False
+view_skill_failures: False
+view_task_failures: False
+view_learnt_subgoals: False
+view_learnt_rl_subgoals: False
+view_backchaining_states: False
+view_learnt_preconds: False
+view_learnt_preconds_probs: False
+view_precond_prediction: False
+view_failure_clusters: False
+
+path_to_dir: ./data/door_opening/debug
+filename: nominal_skills/subgoals/0/all_subgoals.pkl
+
+backchaining:
+  obs_file: ./data/door_opening/debug/nominal_skills/preconds/24-Feb/data/gt_subgoals_obs_2.pkl
+  label_file: ./data/door_opening/debug/nominal_skills/preconds/24-Feb/data/labels_2.pkl
+
+subgoals:
+  subgoal_file: ./data/door_opening/debug/nominal_skills/subgoals/all_gt_subgoals.pkl
+  label_file: ./data/door_opening/debug/nominal_skills/subgoals/all_labels.pkl
+  viz_pos: False
+  viz_neg: True
+
+# precond prediction
+eef_region:
+    x: {'type': 'uniform', 'range': [-0.05, 0.05]}
+    y: {'type': 'uniform', 'range': [-0.05, 0.05]}
+    z: {'type': 'uniform', 'range': [-0.05, 0.05]}
+    roll: {'type': 'uniform', 'range': [-0.52, 0.52]}
+    pitch: {'type': 'uniform', 'range': [-0.52, 0.52]}
+    yaw: {'type': 'uniform', 'range': [-0.52, 0.52]}
+

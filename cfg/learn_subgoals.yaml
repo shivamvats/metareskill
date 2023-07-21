@@ -1,0 +1,17 @@
+defaults:
+  - env: rl
+  - algo: reps
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+
+subgoals_dir: data/door_opening/debug/nominal_skills/subgoals/7-Feb
+obs_file: data/door_opening/debug/nominal_skills/preconds/7-Mar/data/gt_subgoal_obs_2.pkl
+label_file: data/door_opening/debug/nominal_skills/preconds/7-Mar/data/labels_2.pkl
+
+render: True
+
+preconds:
+  one_class: False
+  one_class_svm:
+    nu: 0.05
+    gamma: 0.1

@@ -1,0 +1,51 @@
+defaults:
+  - env: demo #rl
+  - controller: osc_pose
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+
+wandb:
+  project: recovery-skills
+  entity: iam-lab
+  group: door_opening/debug
+
+seed:
+render: False
+mode: train #test, train-test demo
+nactions: 4
+
+# only for demo
+device: keyboard #spacemouse
+arm: "left"
+toggle_camera_on_grasp: False
+keyboard:
+  pos_sensitivity: 1.0
+  rot_sensitivity: 1.0
+
+train:
+  model_type: REPS # PPO
+  timesteps: 256
+  model_save_path:
+  model_save_freq: 10000
+  video_record_freq: 1000
+
+  REPS:
+    rel_entropy_bound: 0.5
+    min_temperature: 1e-5
+    max_updates: 10
+    rollouts_per_update: 100
+    min_success: 0.8
+
+  PPO:
+    policy: MlpPolicy
+    learning_rate: 3e-4 # 0.0003
+    n_steps: 256
+    verbose: 1
+    tensorboard_log: runs
+
+test:
+  #path_to_policy: ckpts/rl_model_100000_steps.ckpt
+  #path_to_policy: data/door_opening/19-44-27/reps_solution.pkl
+  path_to_policy: outputs/2021-11-16/19-44-27/reps_solution.pkl
+  wandb_run_path: iam-lab/recovery-skills/2y7kv74c
+  n_steps: 256

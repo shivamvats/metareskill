@@ -1,0 +1,43 @@
+defaults:
+  - env: rl #rl # demo
+  - hydra/launcher: ray
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+
+hydra:
+  sweep:
+    dir: outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}
+
+seed:
+render: False
+nevals: 5
+
+nominal_skills_dir: data/door_opening/debug/nominal_skills
+pretrained_nominal_skill_chain: trained_gt_skill_chain.pkl
+path_to_preconds: data/door_opening/debug/nominal_skills/preconds/8-Mar/learnt_gt_preconds.pkl
+path_to_failure_clf: ./data/door_opening/debug/failures/1-June/failure_classifier.pkl
+#use_pretrained_nominal_skill_chain: True
+use_pretrained_nominal_skill_chain: False
+load_preconds: True
+skill_ids: [2]
+
+preconds:
+  path_to_file: data/door_opening/debug/nominal_skills/preconds/8-Mar/learnt_gt_preconds.pkl
+  one_class: False
+  one_class_svm:
+    nu: 0.01
+    gamma: 0.01
+
+subgoals:
+  gmm: True
+  svm: False
+  path_to_file: data/door_opening/debug/nominal_skills/subgoals/subgoals.pkl
+
+train:
+  num_samples: 50
+  total_timesteps: 1e6
+  eval_freq: 256
+  model_save_freq: 1000000
+  num_cpus: 1
+  use_ray: False

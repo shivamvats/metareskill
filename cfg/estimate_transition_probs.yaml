@@ -1,0 +1,17 @@
+defaults:
+  - env: rl # demo
+  - algo: reps #sac #ppo
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+
+render: False
+nevals: 200
+
+nominal_skills_dir: data/door_opening/debug/nominal_skills
+pretrained_nominal_skill_chain: trained_gt_skill_chain.pkl
+use_pretrained_nominal_skill_chain: True
+path_to_preconds: ./data/door_opening/debug/nominal_skills/preconds/9-June/finetuned_preconds.pkl
+path_to_failure_classifier: ./data/door_opening/debug/failures/1-June/failure_classifier.pkl
+
+uncertainty_level: high #low
+discovery_strategy: open-loop #early_term

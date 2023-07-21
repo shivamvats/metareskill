@@ -1,0 +1,47 @@
+defaults:
+  - env: rl #rl # demo
+  #- hydra/launcher: ray
+  - override hydra/job_logging: colorlog
+  - override hydra/hydra_logging: colorlog
+
+hydra:
+  sweep:
+    dir: outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
+    subdir: ${hydra.job.num}
+
+seed:
+render: False
+nevals: 10
+n_transition_evals: 200
+task_set:
+nrounds: 100
+
+nominal_skills_dir: data/door_opening/debug/nominal_skills
+pretrained_nominal_skill_chain: trained_gt_skill_chain.pkl
+path_to_recovery_skills: './data/door_opening/debug/recovery_skills/9-June/16-26-08/knn_skills.pkl'
+#path_to_failure_clusters: ./data/door_opening/debug/failures/1-June/failure_clusters.pkl
+path_to_failure_clusters: ./data/door_opening/debug/failures/12-Sep/failure_clusters.pkl
+path_to_failure_clf: ./data/door_opening/debug/failures/12-Sep/failure_classifier.pkl
+path_to_preconds: ./data/door_opening/debug/nominal_skills/preconds/9-June/finetuned_preconds.pkl
+path_to_transition_low: ./data/door_opening/debug/symbolic_graph/9-June/low_transition_probs.pkl
+#path_to_tasks_root: ./data/door_opening/debug/recovery_tasks/test
+path_to_tasks_root: ./data/door_opening/debug/recovery_tasks/9-Sep
+path_to_hl_planner:
+path_to_transitions:
+  path_to_results:dir:
+
+use_pretrained_nominal_skill_chain: False
+load_preconds: True
+open_loop: False
+max_actions: 100 # 6
+max_fails: 1
+
+recover: True
+recovery_strategy: learnt
+#recovery_strategy: retry
+#recovery_strategy: go_to_prev
+#recovery_strategy: go_to_start
+
+subgoals:
+  gmm: True
+  svm: False
