@@ -1,0 +1,10 @@
+[submodule "robosuite"]
+	path = robosuite
+	url = git@github.com:shivamvats/robosuite.git
+	branch = recovery
+[submodule "stable-baselines3"]
+	path = stable-baselines3
+	url = git@github.com:shivamvats/stable-baselines3.git
+[submodule "rl-utils"]
+	path = rl-utils
+	url = git@github.com:iamlab-cmu/rl-utils.git
