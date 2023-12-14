@@ -37,7 +37,7 @@ Move the generated `subgoals.pkl` to `nominal_skills/subgoals`
 
 3. **Learn skill preconditions iteratively by chaining**
 
-`python scripts/learn_skill_preconditions.py finetune=True skill_ids=[2]`
+`python scripts/learn_skill_chain_preconditions.py finetune=True skill_ids=[2]`
 
 - **Input** - `subgoals.pkl`
 

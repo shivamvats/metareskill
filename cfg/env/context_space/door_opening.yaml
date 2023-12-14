@@ -1,0 +1,4 @@
+handle_type: {type: scalar, value: lever} # round
+use_latch: {type: scalar, value: 1} # uniform over 0, 1
+
+#door_type: {type: scalar, value: small}

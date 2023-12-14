@@ -1,0 +1,60 @@
+defaults:
+  - controller: osc_pose
+
+env_name: FrankaDoor
+has_offscreen_renderer: False
+horizon: 500
+timestep: 0.005 # 0.002
+
+context:
+  door:
+    x_range: [0.35, 0.42]
+    y_range: [0.25 , 0.30]
+    z_range: [0.20 , 0.25]
+    #x_range: [0.40, 0.40]
+    #y_range: [0.15 , 0.10]
+    #z_range: [0.0 , 0.0]
+    rotation:
+      axis: z
+      #range: [-np.pi - 0.25, -np.pi]
+      #range: [-3.40, -3.14]
+      range: [-3.40, -2.88]
+      #range: [-3.64, -2.64]
+      #range: [-3.14, -3.14]
+
+obs_uncertainty:
+  handle:pose/position:
+    mean: 0.0
+    #std: 0.00
+    std: 0.02
+    #std: 0.005
+
+eef_home:
+  position: [-0.2149, 0.0130, 1.3830]
+
+eef_start_region:
+    x: {'type': 'uniform', 'range': [0.0, 0.0]}
+    y: {'type': 'uniform', 'range': [0.0, 0.0]}
+    z: {'type': 'uniform', 'range': [0.0, 0.0]}
+    roll: {'type': 'uniform', 'range': [0.0, 0.0]}
+    pitch: {'type': 'uniform', 'range': [0.0, 0.0]}
+    yaw: {'type': 'uniform', 'range': [0.0, 0.0]}
+    #x: {'type': 'uniform', 'range': [-0.03, 0.03]}
+    #y: {'type': 'uniform', 'range': [-0.03, 0.03]}
+    #z: {'type': 'uniform', 'range': [-0.03, 0.03]}
+    #roll: {'type': 'uniform', 'range': [-0.52, 0.52]}
+    #pitch: {'type': 'uniform', 'range': [-0.52, 0.52]}
+    #yaw: {'type': 'uniform', 'range': [-0.52, 0.52]}
+
+# used in training policies
+obs_vars: [ robot_eef:pose/position,
+            robot_eef:pose/quat,
+            robot_eef:gripper/position,
+            door:pose/position,
+            door:pose/theta,
+            hinge:pose/theta,
+            handle:pose/position,
+            handle:pose/theta,
+            #handle:dims,
+            #handle_center_of_rotation:pose/position,
+          ]

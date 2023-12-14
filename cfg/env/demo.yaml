@@ -1,0 +1,45 @@
+defaults:
+  - controller: osc_pose_delta
+
+env_name: FrankaDoor
+has_offscreen_renderer: False
+horizon: 3048
+timestep: 0.005
+
+context:
+  door:
+    x_range: [0.40, 0.45]
+    y_range: [0.15 , 0.20]
+    z_range: [-0.05 , 0.05]
+    rotation:
+      axis: z
+      #range: [-np.pi - 0.25, -np.pi]
+      #range: [-3.39, -3.14]
+      #range: [-3.64, -2.64]
+      range: [-3.14, -3.14]
+
+obs_uncertainty:
+  handle:pose/position:
+    mean: 0.0
+    std: 0.00
+    #std: 0.05
+
+eef_start_region:
+    x: {'type': 'uniform', 'range': [-0.05, 0.05]}
+    y: {'type': 'uniform', 'range': [-0.05, 0.05]}
+    z: {'type': 'uniform', 'range': [-0.05, 0.05]}
+    roll: {'type': 'uniform', 'range': [-0.52, 0.52]}
+    pitch: {'type': 'uniform', 'range': [-0.52, 0.52]}
+    yaw: {'type': 'uniform', 'range': [-0.52, 0.52]}
+
+# used in training policies
+obs_vars: [ robot:arm/joints,
+            robot_eef:pose/position,
+            robot_eef:pose/quat,
+            robot_eef:gripper/position,
+            handle:pose/position,
+            handle:pose/theta,
+            hinge:pose/theta,
+            handle:dims,
+            handle_center_of_rotation:pose/position,
+          ]
