@@ -5,8 +5,10 @@
 
 ## Steps
 1. Clone this repository with ``git clone --recurse-submodules``.
-2. pip install -e robosuite
-3. pip install -e rl-utils
+2. ``cd metareskill``
+3. ``pip install -e robosuite``
+4. ``pip install -e rl-utils``
+5. ``pip install -e .``
 
 # Training
 
