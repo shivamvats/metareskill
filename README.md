@@ -1,3 +1,21 @@
+# Efficient Recovery Learning using Model Predictive Meta-Reasoning
+
+This code is associated with our ICRA'23 paper:
+**[[Paper]](https://ieeexplore.ieee.org/abstract/document/10160382)**&nbsp;**[[Project Website]](https://sites.google.com/view/recoverylearning/home)**
+
+If you find our paper or code useful, please cite us as
+
+```
+@inproceedings{vats2023efficient,
+  title={Efficient Recovery Learning using Model Predictive Meta-Reasoning},
+  author={Vats, Shivam and Likhachev, Maxim and Kroemer, Oliver},
+  booktitle={2023 IEEE International Conference on Robotics and Automation (ICRA)},
+  pages={7258--7264},
+  year={2023},
+  organization={IEEE}
+}
+```
+
 # Installation Instructions
 
 ## Dependencies
